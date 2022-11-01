@@ -46,15 +46,65 @@ services:
       ### Features
       # ENABLE - Used to enable optional features, expects a space delimited list, such as: careportal rawbg iob
       # See https://github.com/nightscout/cgm-remote-monitor#plugins for details
-      ENABLE: basal iob cob boluscalc cage sage iage bage pump openaps pushover bgi food rawbg
-      SHOW_FORECAST: openaps
-      PUMP_FIELDS: clock reservoir
-      DISPLAY_UNITS: mmol
+        ALARM_HIGH: off 
+        ALARM_LOW: off 
+        ALARM_TIMEAGO_URGENT: off 
+        ALARM_TIMEAGO_WARN: off 
+        ALARM_TYPES: predict 
+        ALARM_URGENT_HIGH: off 
+        ALARM_URGENT_LOW: off  
+        AUTH_DEFAULT_ROLES: denied 
+        BASAL_RENDER: icicle 
+        BG_HIGH: 14 
+        BG_LOW: 3.7 
+        BG_TARGET_BOTTOM: 3.9 
+        BG_TARGET_TOP: 10 
+        BOLUS_RENDER_FORMAT: default 
+        BOLUS_RENDER_FORMAT_SMALL: minimal 
+        BOLUS_RENDER_OVER: 0.5 
+        BRIDGE_INTERVAL: 120000 
+        BRIDGE_PASSWORD:  
+        BRIDGE_SERVER: EU 
+        BRIDGE_USER_NAME:  
+        CORS_ALLOW_ORIGIN: https://nightscout-reporter.zreptil.de 
+        CUSTOM_TITLE:  
+        DEVICESTATUS_ADVANCED: true 
+        DEVICESTATUS_DAYS: 1 
+        DISABLE: treatmentnotify 
+        DISPLAY_UNITS: mmol 
+        ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge loop 
+        FRAME_URL_1: 
+        FRAME_URL_2: 
+        LANGUAGE: nb 
+        LOOP_ENABLE_ALERTS: false 
+        LOOP_URGENT: 30 
+        LOOP_WARN: 16 
+        OPENAPS_COLOR_PREDICTION_LINES: true 
+        OPENAPS_ENABLE_ALERTS: false 
+        OPENAPS_FIELDS: status-symbol status-label iob meal-assist rssi 
+        OPENAPS_PRED_COB_COLOR: #f5d549 
+        OPENAPS_PRED_UAM_COLOR: #ff5500 
+        OPENAPS_RETRO_FIELDS: status-symbol status-label iob meal-assist rssi 
+        OPENAPS_URGENT: 27 
+        OPENAPS_WARN: 7 
+        PUMP_FIELDS: battery reservoir clock status 
+        PUMP_RETRO_FIELDS: battery reservoir clock status 
+        SAGE_INFO: 192 
+        SAGE_URGENT: 238 
+        SAGE_WARN: 210 
+        SCALE_Y: linear 
+        SHOW_CLOCK_DELTA: true 
+        SHOW_CLOCK_LAST_TIME: true 
+        SHOW_FORECAST: openaps 
+        SHOW_PLUGINS: iob cob careportal basal override boluscalc sage cage openaps 
+        THEME: colors 
+        TIME_FORMAT: 24 
+        TIMEZONE: Norway 
 
       # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
       # When readable, anyone can view Nightscout without a token. Setting it to denied will require
       # a token from every visit, using status-only will enable api-secret based login.
-      AUTH_DEFAULT_ROLES: denied
+      
 
       # For all other settings, please refer to the Environment section of the README
       # https://github.com/nightscout/cgm-remote-monitor#environment
