@@ -53,7 +53,6 @@ services:
       ALARM_TYPES: predict 
       ALARM_URGENT_HIGH: off 
       ALARM_URGENT_LOW: off
-      API_SECRET:   
       AUTH_DEFAULT_ROLES: denied 
       BASAL_RENDER: icicle 
       BG_HIGH: 14 
