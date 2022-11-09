@@ -28,10 +28,12 @@ echo "NS_EMAIL=$email" >> .env
 echo
 
 echo Now enter the subdomain name for your Nightscout:
+read subdomain
 echo "NS_SUBDOMAIN=$subdomain" >> .env
 echo
 
 echo Now enter the domain name you Nightscout will be hosted at:
+read domain
 echo "NS_DOMAIN=$domain" >> .env
 echo
 
