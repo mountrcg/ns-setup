@@ -36,7 +36,4 @@ curl https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/docker-compos
 
 # sudo docker compose up -d
 
-echo "email: $email"
-echo "URL: $subdomain.$domain"
-
 bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)
