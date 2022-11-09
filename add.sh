@@ -34,3 +34,5 @@ sudo docker-compose up -d
 
 echo "URL: $subdomain.${NS_DOMAIN}"
 echo "secret: $secret"
+echo
+echo "You can view or edit configurations by 'nano docker-compose.yml' Email and domain is stored in .env"
