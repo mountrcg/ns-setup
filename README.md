@@ -14,7 +14,7 @@ Once all the mentioned preparations done you do:
 1. ssh to your VPS
 2. write
 
-bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/main-bo/ns-setup.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/ns-setup.sh)
 
  in console, press enter and follow installation instructions.
 3. enjoy your private nightscout installation
