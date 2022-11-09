@@ -18,19 +18,20 @@ echo \
 sudo apt-get update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo docker run hello-world
+# sudo docker run hello-world
 
 echo Okay, lets set up some variables
 echo
 echo "Enter you email (the one SSL certificate will be generated for):"
-echo "Введите ваш email (на него будет зарегистрирован SSL-сертификат):"
 read email
 echo "NS_EMAIL=$email" >> .env
 echo
 
-echo Now enter domain name you Nightscout will be hosted at:
-echo Введите имя домена, на котором ваш Nightscout будет доступен:
-read domain
+echo Now enter the subdomain name for your Nightscout:
+echo "NS_SUBDOMAIN=$subdomain" >> .env
+echo
+
+echo Now enter the domain name you Nightscout will be hosted at:
 echo "NS_DOMAIN=$domain" >> .env
 echo
 
@@ -42,7 +43,6 @@ curl https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/docker-compos
 sudo docker compose up -d
 
 echo "Your secret for Nightscout access (write it down!):"
-echo "Ваш секретный ключ для доступа к Nightscout (запишите!):"
 echo "secret: $secret"
 echo "email: $email"
-echo "domain: $domain"
+echo "URL: $subdomain.$domain"
