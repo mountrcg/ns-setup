@@ -30,11 +30,14 @@ cat >> docker-compose.yml <<EOF
 
 EOF
 
-sudo docker-compose up -d
+sudo docker compose up -d
 
 echo "URL: $subdomain.${NS_DOMAIN}"
 echo "secret: $secret"
 echo
-echo "You can view or edit configurations by 'nano docker-compose.yml' Email and domain is stored in .env"
+echo "You can view your API_SECRET and edit configurations by 'nano docker-compose.yml'"
+echo "Email and domain variables are stored in '.env'"
 echo
-echo "to add more Nightscout instances, please run 'sudo bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
+echo "To add more Nightscout instances, please run 'sudo bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
+echo
+echo "After editing settings, re-launch your Nightscout by typing 'sudo docker compose up -d'"
