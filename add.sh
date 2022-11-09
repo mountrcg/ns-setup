@@ -36,3 +36,5 @@ echo "URL: $subdomain.${NS_DOMAIN}"
 echo "secret: $secret"
 echo
 echo "You can view or edit configurations by 'nano docker-compose.yml' Email and domain is stored in .env"
+echo
+echo "to add more Nightscout instances, please run 'sudo bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
