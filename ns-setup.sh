@@ -40,7 +40,7 @@ echo "NS_SECRET=$secret" >> .env
 
 curl https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/docker-compose.yml --output docker-compose.yml
 
-sudo docker compose up -d
+# sudo docker compose up -d
 
 echo "Your secret for Nightscout access (write it down!):"
 echo "secret: $secret"
