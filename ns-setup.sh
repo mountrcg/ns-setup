@@ -27,24 +27,16 @@ read email
 echo "NS_EMAIL=$email" >> .env
 echo
 
-echo Now enter the subdomain name for your Nightscout:
-read subdomain
-echo "NS_SUBDOMAIN=$subdomain" >> .env
-echo
-
-echo Now enter the domain name you Nightscout will be hosted at:
+echo Now enter the domain name you Nightscout will be hosted at, excluding the subdomain:
 read domain
 echo "NS_DOMAIN=$domain" >> .env
 echo
-
-secret=$(cat /proc/sys/kernel/random/uuid)
-echo "NS_SECRET=$secret" >> .env
 
 curl https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/docker-compose.yml --output docker-compose.yml
 
 # sudo docker compose up -d
 
-echo "Your secret for Nightscout access (write it down!):"
-echo "secret: $secret"
 echo "email: $email"
 echo "URL: $subdomain.$domain"
+
+bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)

@@ -65,28 +65,6 @@ services:
     volumes:
       - ${NS_MONGO_DATA_DIR:-./mongo-data}:/data/db:cached
 
-  nightscout-${NS_SUBDOMAIN}:
-    image: bjornoleh/nightscout:latest
-    container_name: nightscout-${NS_SUBDOMAIN}
-    restart: always
-    depends_on:
-      - mongo
-    labels:
-      - 'traefik.enable=true'
-      # Change the below Host from `localhost` to be the web address where Nightscout is running.
-      # Also change the email address in the `traefik` service below.
-      - 'traefik.http.routers.nightscout.${NS_SUBDOMAIN}.rule=Host(`${NS_SUBDOMAIN}.${NS_DOMAIN}`)'
-      - 'traefik.http.routers.nightscout.${NS_SUBDOMAIN}.entrypoints=websecure'
-      - 'traefik.http.routers.nightscout.${NS_SUBDOMAIN}.tls.certresolver=le'
-    environment:
-      ### Variables for the container
-      <<: *ns-common-env
-      CUSTOM_TITLE:
-      API_SECRET: ${NS_SECRET}
-      BRIDGE_USER_NAME:
-      BRIDGE_PASSWORD:
-      MONGO_CONNECTION: mongodb://mongo:27017/ns-${NS_SUBDOMAIN}
-
   traefik:
     image: traefik:latest
     container_name: 'traefik'
