@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 x-ns-common-env: &ns-common-env
   NODE_ENV: production
