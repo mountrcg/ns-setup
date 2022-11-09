@@ -30,7 +30,7 @@ cat >> docker-compose.yml <<EOF
 
 EOF
 
-docker-compose up -d
+sudo docker-compose up -d
 
 echo "URL: $subdomain.${NS_DOMAIN}"
 echo "secret: $secret"
