@@ -1,6 +1,7 @@
 #!/bin/sh
 
 while [[ ! "$subdomain" =~ ^[a-zA-Z0-9-]+$ ]]; do
+  echo
   echo "Enter the name of the subdomain where your Nightscout will be available:"
   read subdomain
 done
@@ -32,12 +33,12 @@ EOF
 
 sudo docker compose up -d
 
-echo "URL: $subdomain.${NS_DOMAIN}"
-echo "secret: $secret"
+echo "URL: $subdomain.$domain"
+echo "API_SECRET: $secret"
 echo
-echo "You can view your API_SECRET and edit configurations by 'nano docker-compose.yml'"
+echo "You can view and edit your API_SECRET and other configurations by 'nano docker-compose.yml'"
 echo "Email and domain variables are stored in '.env'"
 echo
-echo "To add more Nightscout instances, please run 'sudo bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
+echo "To add more Nightscout instances, please run 'bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
 echo
 echo "After editing settings, re-launch your Nightscout by typing 'sudo docker compose up -d'"
