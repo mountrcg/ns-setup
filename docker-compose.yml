@@ -24,7 +24,8 @@ x-ns-common-env: &ns-common-env
   BOLUS_RENDER_OVER: 0.5 
   BRIDGE_INTERVAL: 120000 
   BRIDGE_SERVER: EU
-  CORS_ALLOW_ORIGIN: https://nightscout-reporter.zreptil.de 
+  CORS_ALLOW_ORIGIN: https://nightscout-reporter.zreptil.de
+  DBSIZE_MAX: 5000
   DEVICESTATUS_ADVANCED: true 
   DEVICESTATUS_DAYS: 1 
   DISABLE: treatmentnotify 
