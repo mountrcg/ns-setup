@@ -28,6 +28,7 @@ cat >> docker-compose.yml <<EOF
       BRIDGE_USER_NAME:
       BRIDGE_PASSWORD:
       MONGO_CONNECTION: mongodb://mongo:27017/ns-${subdomain}
+      ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge loop
 
 EOF
 

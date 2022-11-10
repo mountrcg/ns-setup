@@ -28,8 +28,7 @@ x-ns-common-env: &ns-common-env
   DEVICESTATUS_ADVANCED: true 
   DEVICESTATUS_DAYS: 1 
   DISABLE: treatmentnotify 
-  DISPLAY_UNITS: mmol 
-  ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge loop 
+  DISPLAY_UNITS: mmol  
   FRAME_URL_1: 
   FRAME_URL_2: 
   LANGUAGE: nb 
