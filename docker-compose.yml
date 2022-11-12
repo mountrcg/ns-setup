@@ -64,6 +64,8 @@ services:
     container_name: mongo
     volumes:
       - ${NS_MONGO_DATA_DIR:-./mongo-data}:/data/db:cached
+    ports:
+      - "27018:27017"
 
   traefik:
     image: traefik:latest
