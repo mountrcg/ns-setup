@@ -1,4 +1,18 @@
-version: '3'
+version: '3.9'
+
+x-ns-common-env: &ns-common-env
+  NODE_ENV: production
+  INSECURE_USE_HTTP: 'true'
+  TZ: Europe/Moscow
+  TIMEZONE: Europe/Moscow
+  TIME_FORMAT: 24
+  DEVICESTATUS_ADVANCED: 'true'
+  DISPLAY_UNITS: mmol
+  LANGUAGE:
+  OPENAPS_COLOR_PREDICTION_LINES: 'true'
+  PUMP_FIELDS: clock reservoir
+  SHOW_FORECAST: openaps
+  THEME: colors
 
 services:
   mongo:
@@ -7,108 +21,6 @@ services:
     container_name: mongo
     volumes:
       - ${NS_MONGO_DATA_DIR:-./mongo-data}:/data/db:cached
-
-  nightscout:
-    image: bjornoleh/nightscout:latest
-    container_name: nightscout
-    restart: always
-    depends_on:
-      - mongo
-    labels:
-      - 'traefik.enable=true'
-      # Change the below Host from `localhost` to be the web address where Nightscout is running.
-      # Also change the email address in the `traefik` service below.
-      - 'traefik.http.routers.nightscout.rule=Host(`${NS_DOMAIN}`)'
-      - 'traefik.http.routers.nightscout.entrypoints=websecure'
-      - 'traefik.http.routers.nightscout.tls.certresolver=le'
-    environment:
-      ### Variables for the container
-      NODE_ENV: production
-      TZ: Etc/UTC
-
-      ### Overridden variables for Docker Compose setup
-      # The `nightscout` service can use HTTP, because we use `traefik` to serve the HTTPS
-      # and manage TLS certificates
-      INSECURE_USE_HTTP: 'true'
-
-      # For all other settings, please refer to the Environment section of the README
-      ### Required variables
-      # MONGO_CONNECTION - The connection string for your Mongo database.
-      # Something like mongodb://sally:sallypass@ds099999.mongolab.com:99999/nightscout
-      # The default connects to the `mongo` included in this docker-compose file.
-      # If you change it, you probably also want to comment out the entire `mongo` service block
-      # and `depends_on` block above.
-      MONGO_CONNECTION: mongodb://mongo:27017/ns
-
-      # API_SECRET - A secret passphrase that must be at least 12 characters long.
-      API_SECRET: ${NS_SECRET}
-
-      ### Features
-      # ENABLE - Used to enable optional features, expects a space delimited list, such as: careportal rawbg iob
-      # See https://github.com/nightscout/cgm-remote-monitor#plugins for details
-      ALARM_HIGH: off 
-      ALARM_LOW: off 
-      ALARM_TIMEAGO_URGENT: off 
-      ALARM_TIMEAGO_WARN: off 
-      ALARM_TYPES: predict 
-      ALARM_URGENT_HIGH: off 
-      ALARM_URGENT_LOW: off
-      API_SECRET:   
-      AUTH_DEFAULT_ROLES: denied 
-      BASAL_RENDER: icicle 
-      BG_HIGH: 14 
-      BG_LOW: 3.7 
-      BG_TARGET_BOTTOM: 3.9 
-      BG_TARGET_TOP: 10 
-      BOLUS_RENDER_FORMAT: default 
-      BOLUS_RENDER_FORMAT_SMALL: minimal 
-      BOLUS_RENDER_OVER: 0.5 
-      BRIDGE_INTERVAL: 120000 
-      BRIDGE_PASSWORD: 
-      BRIDGE_SERVER: EU 
-      BRIDGE_USER_NAME: 
-      CORS_ALLOW_ORIGIN: https://nightscout-reporter.zreptil.de 
-      CUSTOM_TITLE: 
-      DEVICESTATUS_ADVANCED: true 
-      DEVICESTATUS_DAYS: 1 
-      DISABLE: treatmentnotify 
-      DISPLAY_UNITS: mmol 
-      ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge loop 
-      FRAME_URL_1: 
-      FRAME_URL_2: 
-      LANGUAGE: nb 
-      LOOP_ENABLE_ALERTS: false 
-      LOOP_URGENT: 30 
-      LOOP_WARN: 16 
-      OPENAPS_COLOR_PREDICTION_LINES: true 
-      OPENAPS_ENABLE_ALERTS: false 
-      OPENAPS_FIELDS: status-symbol status-label iob meal-assist rssi 
-      OPENAPS_PRED_COB_COLOR: #f5d549 
-      OPENAPS_PRED_UAM_COLOR: #ff5500 
-      OPENAPS_RETRO_FIELDS: status-symbol status-label iob meal-assist rssi 
-      OPENAPS_URGENT: 27 
-      OPENAPS_WARN: 7 
-      PUMP_FIELDS: battery reservoir clock status 
-      PUMP_RETRO_FIELDS: battery reservoir clock status 
-      SAGE_INFO: 192 
-      SAGE_URGENT: 238 
-      SAGE_WARN: 210 
-      SCALE_Y: linear 
-      SHOW_CLOCK_DELTA: true 
-      SHOW_CLOCK_LAST_TIME: true 
-      SHOW_FORECAST: openaps 
-      SHOW_PLUGINS: iob cob careportal basal override boluscalc sage cage openaps 
-      THEME: colors 
-      TIME_FORMAT: 24 
-      TIMEZONE: Europe/Oslo 
-
-      # AUTH_DEFAULT_ROLES (readable) - possible values readable, denied, or any valid role name.
-      # When readable, anyone can view Nightscout without a token. Setting it to denied will require
-      # a token from every visit, using status-only will enable api-secret based login.
-      
-
-      # For all other settings, please refer to the Environment section of the README
-      # https://github.com/nightscout/cgm-remote-monitor#environment
 
   traefik:
     image: traefik:latest
@@ -123,7 +35,6 @@ services:
       - "--certificatesresolvers.le.acme.httpchallenge=true"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
       - '--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json'
-      # Change the below to match your email address
       - '--certificatesresolvers.le.acme.email=${NS_EMAIL}'
     ports:
       - '443:443'
