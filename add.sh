@@ -10,7 +10,7 @@ secret=$(cat /proc/sys/kernel/random/uuid)
 cat >> docker-compose.yml <<EOF
 
   nightscout-${subdomain}:
-    image: bjornoleh/nightscout:latest
+    image: mmountrcg/cgm-remote-monitor:latest_dev
     container_name: nightscout-${subdomain}
     restart: always
     depends_on:
@@ -28,7 +28,7 @@ cat >> docker-compose.yml <<EOF
       BRIDGE_USER_NAME:
       BRIDGE_PASSWORD:
       MONGO_CONNECTION: mongodb://mongo:27017/ns-${subdomain}
-      ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge loop
+      ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge
 
 EOF
 
@@ -40,6 +40,6 @@ echo
 echo "You can view and edit your API_SECRET and other configurations by 'nano docker-compose.yml'"
 echo "Email and domain variables are stored in '.env'"
 echo
-echo "To add more Nightscout instances, please run 'bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)'"
+echo "To add more Nightscout instances, please run 'bash <(wget -qO- https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/add.sh)'"
 echo
 echo "After editing settings, re-launch your Nightscout by typing 'sudo docker compose up -d'"

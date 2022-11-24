@@ -27,13 +27,13 @@ read email
 echo "NS_EMAIL=$email" >> .env
 echo
 
-echo Now enter the domain name you Nightscout will be hosted at, excluding the subdomain:
+echo Now enter the domain name your Nightscout will be hosted at, excluding the subdomain:
 read domain
 echo "NS_DOMAIN=$domain" >> .env
 echo
 
-curl https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/docker-compose.yml --output docker-compose.yml
+curl https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/docker-compose.yml --output docker-compose.yml
 
 # sudo docker compose up -d
 
-bash <(wget -qO- https://raw.githubusercontent.com/bjornoleh/ns-setup/bo-multi/add.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/add.sh)
