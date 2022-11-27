@@ -10,7 +10,7 @@ secret=$(cat /proc/sys/kernel/random/uuid)
 cat >> docker-compose.yml <<EOF
 
   nightscout-${subdomain}:
-    image: nightscout/cgm-remote-monitor:latest
+    image: mountrcg/cgm-remote-monitor:latest_dev
     container_name: nightscout-${subdomain}
     restart: always
     depends_on:

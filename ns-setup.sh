@@ -32,6 +32,6 @@ read domain
 echo "NS_DOMAIN=$domain" >> .env
 echo
 
-curl https://raw.githubusercontent.com/justmara/ns-setup/main/docker-compose.yml --output docker-compose.yml
+curl https://raw.githubusercontent.com/mountrcg/ns-setup/main/docker-compose.yml --output docker-compose.yml
 
-bash <(wget -qO- https://raw.githubusercontent.com/justmara/ns-setup/main/add.sh)
+bash <(wget -qO- https://raw.githubusercontent.com/mountrcg/ns-setup/main/add.sh)
