@@ -41,5 +41,6 @@ echo "You can view and edit your API_SECRET and other configurations by 'nano do
 echo "Email and domain variables are stored in '.env'"
 echo
 echo "To add more Nightscout instances, please run 'bash <(wget -qO- https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/add.sh)'"
+echo "To add a NS-Reporter Grafana Dashboard , please run 'bash <(wget -qO- https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/add-reporter.sh)'"
 echo
 echo "After editing settings, re-launch your Nightscout by typing 'sudo docker compose up -d'"
