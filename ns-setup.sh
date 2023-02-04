@@ -24,12 +24,12 @@ echo Okay, lets set up some variables
 echo
 echo "Enter you email (the one SSL certificate will be generated for):"
 read email
-echo "NS_EMAIL=$email" >> .env
+echo "NS_EMAIL=$email" >> ~/.env
 echo
 
 echo Now enter the domain name your Nightscout will be hosted at, excluding the subdomain:
 read domain
-echo "NS_DOMAIN=$domain" >> .env
+echo "NS_DOMAIN=$domain" >> ~/.env
 echo
 
 curl https://raw.githubusercontent.com/mountrcg/ns-setup/bo-multi/docker-compose.yml --output docker-compose.yml

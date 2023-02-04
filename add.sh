@@ -2,7 +2,7 @@
 
 while [[ ! "$subdomain" =~ ^[a-zA-Z0-9-]+$ ]]; do
   echo
-  echo "Enter the name of the subdomain where your Nightscout will be available:"
+  echo "Enter the name of the 1st subdomain where your Nightscout will be available:"
   read subdomain
 done
 secret=$(cat /proc/sys/kernel/random/uuid)
@@ -11,24 +11,24 @@ cat >> docker-compose.yml <<EOF
 
   nightscout-${subdomain}:
     image: mmountrcg/cgm-remote-monitor:latest_dev
-    container_name: nightscout-${subdomain}
+    container_name: ${subdomain}
     restart: always
     depends_on:
       - mongo
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.nightscout-${subdomain}.rule=Host(\`${subdomain}.\${NS_DOMAIN}\`)'
-      - 'traefik.http.routers.nightscout-${subdomain}.entrypoints=web'
-      - 'traefik.http.routers.nightscout-${subdomain}.entrypoints=websecure'
-      - 'traefik.http.routers.nightscout-${subdomain}.tls.certresolver=le'
+      - 'traefik.http.routers.${subdomain}.rule=Host(\`${subdomain}.\${NS_DOMAIN}\`)'
+      - 'traefik.http.routers.${subdomain}.entrypoints=web'
+      - 'traefik.http.routers.${subdomain}.entrypoints=websecure'
+      - 'traefik.http.routers.${subdomain}.tls.certresolver=le'
     environment:
       <<: *ns-common-env
-      CUSTOM_TITLE:
+      CUSTOM_TITLE: ${subdomain}
+      AUTH_DEFAULT_ROLES: readable
       API_SECRET: '${secret}'
-      BRIDGE_USER_NAME:
-      BRIDGE_PASSWORD:
-      MONGO_CONNECTION: mongodb://mongo:27017/ns-${subdomain}
-      ENABLE: pump iob cob basal careportal sage cage override cors bwp boluscalc maker openaps bridge
+      MONGO_CONNECTION: mongodb://mongo:27017/${subdomain}
+      ENABLE: basal bridge iob cob boluscalc cage sage iage bage pump openaps bgi food rawbg dbsize
+      SHOW_PLUGINS: iob cob careportal basal override sage cage openaps dbsize
 
 EOF
 

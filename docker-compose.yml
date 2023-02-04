@@ -2,6 +2,7 @@ version: '3.9'
 
 x-ns-common-env: &ns-common-env
   NODE_ENV: production
+  INSECURE_USE_HTTP: 'true'
   TZ: Europe/Berlin
   TIMEZONE: Europe/Berlin
   TIME_FORMAT: 24
@@ -13,26 +14,22 @@ x-ns-common-env: &ns-common-env
   ALARM_TYPES: predict
   ALARM_URGENT_HIGH: off
   ALARM_URGENT_LOW: off
-  AUTH_DEFAULT_ROLES: denied
   BASAL_RENDER: icicle
   BG_HIGH: 180
-  BG_LOW: 64
+  BG_LOW: 65
   BG_TARGET_BOTTOM: 70
   BG_TARGET_TOP: 140
-  BOLUS_RENDER_FORMAT: concise
+  BOLUS_RENDER_FORMAT: minimal
   BOLUS_RENDER_FORMAT_SMALL: hidden
   BOLUS_RENDER_OVER: 0.5
   BRIDGE_INTERVAL: 120000
   BRIDGE_SERVER: EU
   CORS_ALLOW_ORIGIN: https://nightscout-reporter.zreptil.de
   DBSIZE_MAX: 5000
-  DEVICESTATUS_ADVANCED: true
+  DEVICESTATUS_ADVANCED: 'true'
   DEVICESTATUS_DAYS: 1
   DISABLE: treatmentnotify
   DISPLAY_UNITS: mg/dl
-  FRAME_URL_1:
-  FRAME_URL_2:
-  LANGUAGE: nb
   LOOP_ENABLE_ALERTS: 'false'
   LOOP_URGENT: 30
   LOOP_WARN: 16
@@ -53,9 +50,7 @@ x-ns-common-env: &ns-common-env
   SHOW_CLOCK_DELTA: 'true'
   SHOW_CLOCK_LAST_TIME: 'true'
   SHOW_FORECAST: openaps
-  SHOW_PLUGINS: iob cob careportal basal override  sage cage openaps
   THEME: colors
-
 
 services:
   mongo:
@@ -80,7 +75,6 @@ services:
       - "--certificatesresolvers.le.acme.httpchallenge=true"
       - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
       - '--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json'
-      # Change the below to match your email address
       - '--certificatesresolvers.le.acme.email=${NS_EMAIL}'
     ports:
       - '443:443'
